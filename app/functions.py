@@ -6,11 +6,8 @@ from app.commands import set_commands
 
 async def get_start(message: Message, bot: Bot):
     await set_commands(bot)
-    await message.answer(  # f"Fresh Super Market botiga xush kelibsiz 👋🏻\n "
-                         f"Davom etish uchun tilni tanlang \n"
-                         # f"Добро пожаловать в бот Fresh Super Market 👋🏻\n"
+    await message.answer(f"Davom etish uchun tilni tanlang \n"
                          f"Выберите язык, чтобы продолжить \n"
-                         # f"Welcome to Fresh Super Market bot 👋🏻\n"
                          f"Choose a language to continue \n", reply_markup=start_inline_keyboard)
     await message.delete()
 
