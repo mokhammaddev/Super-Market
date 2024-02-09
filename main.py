@@ -10,18 +10,18 @@ from db.dbmiddleware import DbSession
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=settings.bots.bot_token, parse_mode='html')
-# pool_connect = await create_pool()
-# db.updatde.middileware.register(DbSession(pool_connect))
 dp = Dispatcher()
 dp.message.register(get_start, F.text == '/start')
 dp.message.register(set_commands, Command(commands='inline'))
 dp.callback_query.register(get_menu, F.data.startswith('uzb'))
 dp.callback_query.register(get_again_start, F.data.startswith('edit_language'))
 dp.callback_query.register(get_vacancies, F.data.startswith('vacancy'))
-dp.callback_query.register(get_start, F.data.startswith('back_vacancy'))
+dp.callback_query.register(get_vacancies, F.data.startswith('back_vacancy'))
 dp.callback_query.register(get_menu, F.data.startswith('menu'))
-# dp.callback_query.register(get_kassir, F.data.startswith("kassir"))
-dp.message.register(get_kassir, F.text == 'Kassir 💰')
+dp.callback_query.register(get_kassir, F.data.startswith('kassir'))
+dp.callback_query.register(cashier_name, F.data.startswith('start_cashier'))
+# dp.message.register(cashier_name)
+dp.message.register(cashier_age)
 
 
 async def main():
