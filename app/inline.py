@@ -15,7 +15,6 @@ start_inline = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ], one_time_keyboard=True)
 
-
 menu_uzb_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(
@@ -41,7 +40,6 @@ menu_uzb_inline = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ], one_time_keyboard=True)
 
-
 vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Kassir 💰", callback_data='kassir'),
@@ -59,13 +57,12 @@ vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ], one_time_keyboard=True)
 
-
 cashier_start_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Orqaga", callback_data='menu_vacancy'),
         InlineKeyboardButton(text="Kiritish", callback_data='start_cashier')
     ]
-])
+], one_time_keyboard=True)
 
 cashier_name_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
@@ -74,12 +71,9 @@ cashier_name_inline = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ], one_time_keyboard=True)
 
-
 cashier_age_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text='Orqaga', callback_data='cashier_age'),
         InlineKeyboardButton(text='Kiritish', callback_data='cashier_location')
     ]
 ], one_time_keyboard=True)
-
-

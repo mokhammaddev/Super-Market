@@ -72,7 +72,7 @@ async def get_kassir(call: CallbackQuery, bot: Bot):
 
 async def cashier_name(message: Message, bot: Bot):
     if list_name == []:
-        if len(message.text.split()) == 3 or len(message.text.split()) == 4:
+        if 3 <= len(message.text.split()) <= 4:
             list_name.append(message.text)
             await message.answer("Tug'ilgan kuningizni kiriting 📅 (masalan, 02.11.1995):",
                                  reply_markup=cashier_name_inline)
