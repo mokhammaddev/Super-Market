@@ -19,7 +19,7 @@ dp.callback_query.register(get_vacancies, F.data.startswith('vacancy'))
 dp.callback_query.register(get_menu, F.data.startswith('menu'))
 dp.callback_query.register(get_cashier, F.data.startswith('cashier'))
 dp.message.register(get_start_cashier)
-
+dp.message.register(anonym_text_delete)
 ##############################################################################
 
 

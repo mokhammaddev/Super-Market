@@ -6,6 +6,7 @@ from app.commands import set_commands
 from app.texts import *
 from app.reply import *
 
+cashier_start_boolean = []
 simple = []
 list_name = []
 list_age = []
@@ -59,25 +60,30 @@ async def get_menu(call: CallbackQuery, bot: Bot):
 
 
 async def get_cashier(call: CallbackQuery, bot: Bot):
+    # CASHIER NAME
     simple.append(1)
     await call.message.answer_photo("https://s-english.ru/images/lilovik-2/kassir5.jpg", vacancy_kassa_text)
+    cashier_start_boolean.append(1)
     await call.message.answer(
         f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: Falonchiyev Pistonchi Falonchiyevich)",
         reply_markup=information_cashier_keyboard)
 
 
 async def get_start_cashier(message: Message):
-    print("Boshlanish", simple)
+
+    # CASHIER AGE
     if len(simple) == 1:
         if list_name == []:
             if 3 <= len(message.text.split()) <= 4:
                 list_name.append(message.text)
-                await message.answer("Tug'ilgan kuningizni kiriting 📅 (masalan, <b>02.11.1995</b>):")
+                await message.answer("Tug'ilgan kuningizni kiriting 📅 (masalan, <b>31.10.2002</b>):")
                 simple.append(2)
-            elif 4 <= len(message.text.split()) <= 3:
+            # elif 4 < len(message.text.split()) < 3:
+            else:
                 await message.answer(
                     "Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: Falonchiyev Pistonchi Falonchiyevich):")
-    print("2 ketaverish", simple)
+
+    # CASHIER LOCATION
     if len(simple) == 2 and list_age == []:
         if len(list_name) == 1 and list_age == []:
             if len(message.text) == 10 and message.text[2] == message.text[5] == '.':
@@ -85,21 +91,31 @@ async def get_start_cashier(message: Message):
                 await message.answer(
                     "Yashash manzili 🏠  viloyat/shahar(tuman)/kocha/raqam-uy (masalan: <b>Sirdaryo/Xovos/17-uy</b> ):")
                 simple.append(3)
-            else:
-                await message.answer("Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: 31.10.2002)")
-    print("3 ga ketaverish", simple)
+            elif len(list_age) == 1 and list_age == [] and message.text[2] != message.text[5] != '.':
+            # else:
+                await message.answer("Noto'gri kiritildi, iltimos namunadagidek kiriting 📅 (masalan: 31.10.2002)")
+
+    # CASHIER PHONE NUMBER
     if len(simple) == 3 and list_location == []:
         if len(list_name) == 1 and len(list_age) == 1 and list_location == []:
-            if len(message.text.split('/')) == 3 and len(message.text >= 5):
+            if len(message.text.split('/')) == 3 and len(message.text) >= 5:
                 list_location.append(message.text)
                 await message.answer("Kontakt telefon raqamingizni kiriting 📱 misol: (+998XXXXXXXXXX)")
                 simple.append(4)
+            # elif len(simple) == 3 and list_location == [] and len(list_age) != 1 and len(list_age) != 1:
             else:
                 await message.answer(
                     "Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: <b>+998XXXXXXXXXX)</b>")
 
-    print("4 ga ketaverish", simple)
     # await message.answer(f"{len(message.text.split('/'))}, {message.text}")
+
+
+async def anonym_text_delete(message: Message):
+    print("Anonymizing text-->", message.text)
+    if len(simple) == 0:
+        await message.delete()
+
+
 
 ###############################################################################################################
 
