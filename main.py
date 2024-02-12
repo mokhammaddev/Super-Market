@@ -17,11 +17,19 @@ dp.callback_query.register(get_menu, F.data.startswith('uzb'))
 dp.callback_query.register(get_again_start, F.data.startswith('edit_language'))
 dp.callback_query.register(get_vacancies, F.data.startswith('vacancy'))
 dp.callback_query.register(get_menu, F.data.startswith('menu'))
+
+
+##############################################################################
+
+
 # dp.callback_query.register(cashier_name, F.data.startswith('menu_vacancy'))
-dp.callback_query.register(get_kassir, F.data.startswith('kassir'))
-dp.callback_query.register(cashier_name, F.data.startswith('start_cashier'))
+# dp.callback_query.register(get_kassir, F.data.startswith('kassir'))
+# dp.callback_query.register(cashier_name, F.data.startswith('start_cashier'))
 # dp.message.register(cashier_name)
-dp.message.register(cashier_age)
+# dp.message.register(cashier_age)
+
+
+##############################################################################
 
 
 async def main():

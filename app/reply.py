@@ -26,3 +26,10 @@ menu_keyboard = ReplyKeyboardMarkup(
     ],
     one_time_keyboard=True, resize_keyboard=True, selective=True, is_persistent=True
 )
+
+
+start_cashier = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Orqaga↩️", callback_data="back_1")
+    ]
+])

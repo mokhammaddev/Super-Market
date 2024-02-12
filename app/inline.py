@@ -57,6 +57,10 @@ vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ], one_time_keyboard=True)
 
+
+#############################################################################################################
+
+
 cashier_start_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Orqaga", callback_data='menu_vacancy'),
