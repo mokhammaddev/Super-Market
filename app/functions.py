@@ -6,7 +6,7 @@ from app.commands import set_commands
 from app.texts import *
 from app.reply import *
 
-simple = 0
+simple = []
 list_name = []
 list_age = []
 list_location = []
@@ -57,20 +57,20 @@ async def get_menu(call: CallbackQuery, bot: Bot):
     await call.message.delete()
 
 
-async def start_cashier(message: Message):
-    await message.answer(f"")
+async def get_cashier(call: CallbackQuery, bot: Bot):
+    simple.append(1)
+    await call.message.answer_photo("https://s-english.ru/images/lilovik-2/kassir5.jpg", vacancy_kassa_text)
+    await call.message.answer(
+        f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: Falonchiyev Pistonchi Falonchiyevich){simple}",
+        reply_markup=information_cashier_keyboard)
 
+
+async def get_start_cashier(message: Message):
+    await message.answer(f"{message.text}, {simple}")
 
 ###############################################################################################################
 
 
-# async def get_kassir(call: CallbackQuery, bot: Bot):
-#     await call.message.answer_photo("https://s-english.ru/images/lilovik-2/kassir5.jpg", vacancy_kassa_text)
-#     await call.message.answer(
-#         "Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: Falonchiyev Pistonchi Falonchiyevich)",
-#         reply_markup=cashier_start_inline)
-#
-#
 # # async def cashier_information(message: Message, bot: Bot):
 # #     list_cashier_information.append(message.text)
 # #     await message.answer(f"{list_cashier_information}")

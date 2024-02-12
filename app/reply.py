@@ -17,7 +17,6 @@ vacancy_menu_keyboard = ReplyKeyboardMarkup(keyboard=[
     ]
 ], one_time_keyboard=True, resize_keyboard=True, selective=True)
 
-
 menu_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
@@ -28,8 +27,20 @@ menu_keyboard = ReplyKeyboardMarkup(
 )
 
 
-start_cashier = ReplyKeyboardMarkup(keyboard=[
+# start_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
+#     [
+#         KeyboardButton(text=" ")
+#     ]
+# ],
+#     one_time_keyboard=True, resize_keyboard=True
+# )
+
+
+information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
-        KeyboardButton(text="Orqaga↩️", callback_data="back_1")
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
     ]
-])
+],
+    one_time_keyboard=True, resize_keyboard=True
+)

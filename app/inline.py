@@ -42,7 +42,7 @@ menu_uzb_inline = InlineKeyboardMarkup(inline_keyboard=[
 
 vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Kassir 💰", callback_data='kassir'),
+        InlineKeyboardButton(text="Kassir 💰", callback_data='cashier'),
         InlineKeyboardButton(text="Farrosh 🧹", callback_data='farrosh')
     ],
     [
