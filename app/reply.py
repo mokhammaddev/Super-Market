@@ -105,3 +105,9 @@ information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
+finish_information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Tugatish")
+    ]
+], one_time_keyboard=True, resize_keyboard=True)
+

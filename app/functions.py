@@ -113,13 +113,13 @@ async def get_start_cashier(message: Message):
     # if len(simple) == 5 and len(list_name) == 1 and len(
     #         list_location) >= 1 and list_marry == []:
     #     if len(list_marry) == 1 and len(list_phone) == 1:
-            # if message.text in ('Oilali', 'Ajrashgan', 'Turmush qurmagan'):
-            #     list_marry.append(message.text)
-            #     await message.answer("Siz 🎓 talabamisiz?", reply_markup=information_cashier_student_keyboard)
-            #     simple.append(6)
-            # else:
-            #     await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
-            #                                  reply_markup=information_cashier_marry_keyboard)
+    # if message.text in ('Oilali', 'Ajrashgan', 'Turmush qurmagan'):
+    #     list_marry.append(message.text)
+    #     await message.answer("Siz 🎓 talabamisiz?", reply_markup=information_cashier_student_keyboard)
+    #     simple.append(6)
+    # else:
+    #     await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
+    #                                  reply_markup=information_cashier_marry_keyboard)
 
     # CASHIER WORKDAY
     # if len(simple) == 6 and len(list_name) == 1 and len(list_marry) == 1 and len(
@@ -133,7 +133,7 @@ async def get_start_cashier(message: Message):
     #         else:
     #             await message.answer("")
 
-# await message.answer(f"{len(message.text.split('/'))}, {message.text}")
+    # await message.answer(f"{len(message.text.split('/'))}, {message.text}")
 
     if message.text in ('Oilali', 'Ajrashgan', 'Turmush qurmagan'):
         list_marry.append(message.text)
@@ -158,8 +158,13 @@ async def get_start_cashier(message: Message):
 
     if len(simple) == 5:
         print(message.text, message.photo)
+        simple.append(9)
         list_photo.append(message.photo)
         print("list_photo", list_photo)
+        await message.answer("Tugatish", answer_markup=list_photo, reply_markup=finish_information_cashier_keyboard)
+
+    if len(simple) == 6:
+        await message.answer(f"{list_price}, {list_photo}, {list_name} hammasi shu")
 
 
 async def anonym_text_delete(message: Message):
