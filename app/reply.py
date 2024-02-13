@@ -44,3 +44,31 @@ information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
 ],
     one_time_keyboard=True, resize_keyboard=True
 )
+
+information_cashier_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Telefon raqam📱", request_contact=True)
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
+    ]
+],
+    one_time_keyboard=True, resize_keyboard=True
+)
+
+information_cashier_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Oilali"),
+        KeyboardButton(text="Ajrashgan")
+    ],
+    [
+        KeyboardButton(text="Turmush qurmagan")
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
+    ]
+],
+    one_time_keyboard=True, resize_keyboard=True
+)
