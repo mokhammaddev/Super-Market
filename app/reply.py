@@ -72,3 +72,36 @@ information_cashier_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
 ],
     one_time_keyboard=True, resize_keyboard=True
 )
+
+
+information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Ha talabaman"),
+        KeyboardButton(text="Yo'q talaba emasman")
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
+    ]
+],
+    one_time_keyboard=True, resize_keyboard=True
+)
+
+
+information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="💵 1-2 million"),
+        KeyboardButton(text="💵 2-3 million")
+    ],
+    [
+        KeyboardButton(text="💵 3-4 million"),
+        KeyboardButton(text="💵 5-7 million")
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
+    ]
+],
+    one_time_keyboard=True, resize_keyboard=True
+)
+

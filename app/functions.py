@@ -1,20 +1,10 @@
 import asyncpg
 from aiogram import Bot
-from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
+from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove, FSInputFile
 from app.inline import *
 from app.commands import set_commands
 from app.texts import *
 from app.reply import *
-
-cashier_start_boolean = []
-simple = []
-list_name = []
-list_age = []
-list_location = []
-list_phone = []
-list_marry = []
-list_is_student = []
-list_work_day = []
 
 
 # list_cashier_information = ['FIO', 'date', 'phone', 'marry', 'working time', 'specialty 🎓', 'language', 'price',
@@ -84,42 +74,92 @@ async def get_start_cashier(message: Message):
                     "Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>):")
 
     # CASHIER LOCATION
-    if len(simple) == 2:
-        if len(list_name) == 1 and list_age == []:
-            if len(message.text) == 10 and message.text[2] == message.text[5] == '.':
-                list_age.append(message.text)
-                await message.answer(
-                    "Yashash manzili 🏠  viloyat/shahar(tuman)/kocha/raqam-uy (masalan: <b>Sirdaryo/Xovos/17-uy</b> ):")
-                simple.append(3)
-            # elif len(list_age) == 1 and list_age == [] and message.text[2] != message.text[5] != '.':
-            else:
-                await message.answer("Noto'gri kiritildi, iltimos namunadagidek kiriting 📅 (masalan: 31.10.2002)")
+    # if len(simple) == 2:
+    #     if len(list_name) == 1 and list_age == []:
+    #         if len(message.text) == 10 and message.text[2] == message.text[5] == '.':
+    #             list_age.append(message.text)
+    #             await message.answer(
+    #                 "Yashash manzili 🏠  viloyat/shahar(tuman)/kocha/raqam-uy (masalan: <b>Sirdaryo/Xovos/17-uy</b> ):")
+    #             simple.append(3)
+    #         # elif len(list_age) == 1 and list_age == [] and message.text[2] != message.text[5] != '.':
+    #         else:
+    #             await message.answer("Noto'gri kiritildi, iltimos namunadagidek kiriting 📅 (masalan: 31.10.2002)")
+    #
+    # # CASHIER PHONE NUMBER
+    # if len(simple) == 3 and list_location == [] and len(list_name) == 1:
+    #     if len(list_name) == 1 and len(list_age) == 1 and list_location == []:
+    #         if len(message.text.split('/')) == 3 and len(message.text) >= 5:
+    #             list_location.append(message.text)
+    #             await message.answer("Kontakt telefon raqamingizni kiriting 📱 misol: (<b>+998XXXXXXXXXX</b>)",
+    #                                  reply_markup=information_cashier_phone_number_keyboard)
+    #             simple.append(4)
+    #         # elif len(simple) == 3 and list_location == [] and len(list_age) != 1 and len(list_age) != 1:
+    #         else:
+    #             await message.answer(
+    #                 "Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: <b>Sirdaryo/Xovos/17-uy</b>)")
+    #
+    # # CASHIER MARRY
+    # if len(simple) == 4 and len(list_name) == 1 and len(list_location) >= 1 and list_phone == []:
+    #     if len(list_age) == 1 and len(list_location) >= 1:
+    #         if message.text[0] == '+' and len(message.text) == 13:
+    #             list_phone.append(message.text)
+    #             await message.answer("💍 Oilaviy ahvolingiz:", reply_markup=information_cashier_marry_keyboard)
+    #             simple.append(5)
+    #         else:
+    #             await message.answer(
+    #                 "Noto'gri kiritildi, iltimos namunadagidek kiriting 📱 misol: (<b>+998XXXXXXXXXX)</b>")
 
-    # CASHIER PHONE NUMBER
-    if len(simple) == 3 and list_location == [] and len(list_name) == 1:
-        if len(list_name) == 1 and len(list_age) == 1 and list_location == []:
-            if len(message.text.split('/')) == 3 and len(message.text) >= 5:
-                list_location.append(message.text)
-                await message.answer("Kontakt telefon raqamingizni kiriting 📱 misol: (<b>+998XXXXXXXXXX</b>)",
-                                     reply_markup=information_cashier_phone_number_keyboard)
-                simple.append(4)
-            # elif len(simple) == 3 and list_location == [] and len(list_age) != 1 and len(list_age) != 1:
-            else:
-                await message.answer(
-                    "Noto'gri kiritildi, iltimos namunadagidek kiriting (masalan: <b>Sirdaryo/Xovos/17-uy</b>)")
+    # CASHIER IS STUDENT
+    # if len(simple) == 5 and len(list_name) == 1 and len(
+    #         list_location) >= 1 and list_marry == []:
+    #     if len(list_marry) == 1 and len(list_phone) == 1:
+            # if message.text in ('Oilali', 'Ajrashgan', 'Turmush qurmagan'):
+            #     list_marry.append(message.text)
+            #     await message.answer("Siz 🎓 talabamisiz?", reply_markup=information_cashier_student_keyboard)
+            #     simple.append(6)
+            # else:
+            #     await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
+            #                                  reply_markup=information_cashier_marry_keyboard)
 
-    # CASHIER
-    if len(simple) == 4 and len(list_name) == 1 and list_marry == [] and len(list_location) >= 1:
-        if len(list_age) == 1 and len(list_location) >= 1:
-            if message.text[0] == '+' and len(message.text) == 13:
-                list_phone.append(message.text)
-                await message.answer("💍 Oilaviy ahvolingiz:", reply_markup=information_cashier_marry_keyboard)
-                simple.append(5)
-            else:
-                await message.answer(
-                    "Noto'gri kiritildi, iltimos namunadagidek kiriting 📱 misol: (<b>+998XXXXXXXXXX)</b>")
+    # CASHIER WORKDAY
+    # if len(simple) == 6 and len(list_name) == 1 and len(list_marry) == 1 and len(
+    #         list_location) >= 1 and list_is_student == []:
+    #     if len(list_marry) == 1 and len(list_phone) == 1:
+    #         if message.text in ('Ha talabaman', "Yo'q talaba emasman"):
+    #             list_is_student.append(message.text)
+    #             await message.answer("💸 Kutilayotgan ish haqi miqdorini ko'rsating (<b>so'm</b>):",
+    #                                  reply_markup=information_cashier_price_keyboard)
+    #             simple.append(7)
+    #         else:
+    #             await message.answer("")
 
-    # await message.answer(f"{len(message.text.split('/'))}, {message.text}")
+# await message.answer(f"{len(message.text.split('/'))}, {message.text}")
+
+    if message.text in ('Oilali', 'Ajrashgan', 'Turmush qurmagan'):
+        list_marry.append(message.text)
+        await message.answer("Siz 🎓 talabamisiz?", reply_markup=information_cashier_student_keyboard)
+        simple.append(6)
+    else:
+        await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
+                             reply_markup=information_cashier_marry_keyboard)
+    print(simple)
+    if len(simple) == 3:
+        if message.text in ('Ha talabaman', "Yo'q talaba emasman"):
+            list_is_student.append(message.text)
+            await message.answer("💸 Kutilayotgan ish haqi miqdorini ko'rsating (<b>so'm</b>):",
+                                 reply_markup=information_cashier_price_keyboard)
+            simple.append(7)
+
+    if len(simple) == 4:
+        if message.text == '💵 1-2 million':
+            list_price.append(message.text)
+            await message.answer("Suratingizni yuboring 🤵 (telefoningizdan selfi olishingiz mumkin)")
+            simple.append(8)
+
+    if len(simple) == 5:
+        print(message.text, message.photo)
+        list_photo.append(message.photo)
+        print("list_photo", list_photo)
 
 
 async def anonym_text_delete(message: Message):
