@@ -88,6 +88,22 @@ information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
 )
 
 
+information_cashier_language_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Boshlang'ich"),
+        KeyboardButton(text="O'rtacha")
+    ],
+    [
+        KeyboardButton(text="Yuqori"),
+        KeyboardButton(text="Master")
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
+    ]
+], one_time_keyboard=True, resize_keyboard=True)
+
+
 information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="💵 1-2 million"),
@@ -108,6 +124,10 @@ information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
 finish_information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Tugatish")
+    ],
+    [
+        KeyboardButton(text="🔼Menyu"),
+        KeyboardButton(text="Orqaga↩️")
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
 
