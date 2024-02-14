@@ -131,3 +131,9 @@ finish_information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
 
+back_to_menu = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="Menuga qaytish↩")
+    ]
+], one_time_keyboard=True, resize_keyboard=True)
+
