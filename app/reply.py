@@ -26,16 +26,6 @@ menu_keyboard = ReplyKeyboardMarkup(
     one_time_keyboard=True, resize_keyboard=True, selective=True, is_persistent=True
 )
 
-
-# start_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
-#     [
-#         KeyboardButton(text=" ")
-#     ]
-# ],
-#     one_time_keyboard=True, resize_keyboard=True
-# )
-
-
 information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="🔼Menyu"),
@@ -46,9 +36,9 @@ information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
 )
 
 information_cashier_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[
-    [
-        KeyboardButton(text="Telefon raqam📱", request_contact=True)
-    ],
+    # [
+    #     KeyboardButton(text="Telefon raqam📱", request_contact=True)
+    # ],
     [
         KeyboardButton(text="🔼Menyu"),
         KeyboardButton(text="Orqaga↩️")
@@ -137,3 +127,9 @@ back_to_menu = ReplyKeyboardMarkup(keyboard=[
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
 
+
+oddiy = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="reqam", request_contact=True)
+    ]
+], one_time_keyboard=True, resize_keyboard=True, selective=True)

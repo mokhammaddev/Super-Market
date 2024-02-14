@@ -18,7 +18,7 @@ start_inline = InlineKeyboardMarkup(inline_keyboard=[
 menu_uzb_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(
-            text=" 🎯   V a k a n s i y a   🎯 ",
+            text="📃Vakansiyalar ",
             callback_data='vacancy'
         )
     ],

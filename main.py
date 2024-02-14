@@ -11,6 +11,8 @@ from db.dbmiddleware import DbSession
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=settings.bots.bot_token, parse_mode='html')
 dp = Dispatcher()
+# dp.message.register(get_oddiy, F.text == '/start')
+# dp.message.register(set_reqam, F.text == '/setreqam')
 dp.message.register(get_start, F.text == '/start')
 dp.message.register(set_commands, Command(commands='inline'))
 dp.callback_query.register(get_menu, F.data.startswith('uzb'))

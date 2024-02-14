@@ -10,6 +10,16 @@ from app.reply import *
 # list_cashier_information = ['FIO', 'date', 'phone', 'marry', 'working time', 'specialty 🎓', 'language', 'price',
 #                             'photo']
 
+###############################################
+async def get_oddiy(message: Message, bot: Bot):
+    await message.answer("contact", reply_markup=oddiy)
+
+
+async def set_reqam(message: Message):
+    await message.answer(message.text)
+
+##################################################
+
 
 async def get_text(message: Message):
     await message.answer(f"<b>{message.text}</b>")
@@ -184,7 +194,6 @@ async def get_start_cashier(message: Message):
                 f"<b>🤵Asosiy surat:</b> photo\n"
                 f"<b>Shaxsiy ma'lumotlar:</b> ✔️ Roziman\n"
             )
-            print(finish_cashier_information_text)
             simple.append(11)
             await message.answer(f"{finish_cashier_information_text}", reply_markup=back_to_menu)
 
