@@ -23,11 +23,6 @@ async def get_again_start(call: CallbackQuery, bot: Bot):
     await call.message.delete()
 
 
-async def get_vacancies(call: CallbackQuery, bot: Bot):
-    await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
-    await call.message.delete()
-
-
 async def get_settings(call: CallbackQuery):
     await call.answer("Kechirasiz bu sahifa hali tayyor emas")
 
@@ -38,6 +33,11 @@ async def get_about(call: CallbackQuery):
 
 async def get_menu(call: CallbackQuery, bot: Bot, state: FSMContext):
     await call.message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+    await call.message.delete()
+
+
+async def get_vacancies(call: CallbackQuery, bot: Bot):
+    await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
     await call.message.delete()
 
 
@@ -60,68 +60,65 @@ async def get_name_vacancy(message: Message, bot: Bot, state: FSMContext):
 
 
 async def get_age_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(age=message.text)
     await message.answer(
         "Yashash manzili 🏠  viloyat/shahar(tuman)/kocha/raqam-uy (masalan: <b>Sirdaryo/Xovos/17-uy</b> ):")
     await state.set_state(Vacancy.location)
 
 
 async def get_location_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(location=message.text)
     await message.answer("Kontakt telefon raqamingizni kiriting 📱 misol: (<b>+998XXXXXXXXXX</b>)",
                          reply_markup=information_cashier_phone_number_keyboard)
     await state.set_state(Vacancy.phone_number)
 
 
 async def get_phone_number_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(phone_number=message.text)
     await message.answer("💍 Oilaviy ahvolingiz:", reply_markup=information_cashier_marry_keyboard)
     await state.set_state(Vacancy.marry)
 
 
 async def get_marry_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(marry=message.text)
     await message.answer("Siz 🎓 talabamisiz?", reply_markup=information_cashier_student_keyboard)
     await state.set_state(Vacancy.is_student)
 
 
 async def get_is_student_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(is_student=message.text)
     await message.answer("Rus tilini qanchalik darajada bilasiz? 🇷🇺",
                          reply_markup=information_cashier_language_keyboard)
     await state.set_state(Vacancy.language)
 
 
 async def get_language_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(language=message.text)
     await message.answer("💸 Kutilayotgan ish haqi miqdorini ko'rsating (<b>so'm</b>):",
                          reply_markup=information_cashier_price_keyboard)
     await state.set_state(Vacancy.price)
 
 
 async def get_price_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(price=message.text)
     await message.answer("Suratingizni yuboring 🤵 (telefoningizdan selfi olishingiz mumkin)")
     await state.set_state(Vacancy.image)
 
 
 async def get_image_vacancy(message: Message, bot: Bot, state: FSMContext):
-    data = await state.get_data()
-    await message.answer(f"{data}")
+    await state.update_data(image=message.text)
     await message.answer("Tugatish", reply_markup=finish_information_cashier_keyboard)
     await state.set_state(Vacancy.finish)
 
 
 async def get_finish_vacancy(message: Message, bot: Bot, state: FSMContext):
     data = await state.get_data()
-    await message.answer(f"{data}", reply_markup=back_to_menu)
+    await message.answer(f"{data}", reply_markup=back_to_menu_keyboard)
+    await state.set_state(Vacancy.menu)
+
+
+async def get_to_menu(message: Message):
+    await message.answer("Menuuuuuuuuuuuuuuuuu", reply_markup=menu_uzb_inline)
 
 
 

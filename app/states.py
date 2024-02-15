@@ -12,3 +12,4 @@ class Vacancy(StatesGroup):
     price = State()
     image = State()
     finish = State()
+    menu = State()

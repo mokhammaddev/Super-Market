@@ -66,7 +66,6 @@ information_cashier_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
-
 information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Ha talabaman"),
@@ -79,7 +78,6 @@ information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
 ],
     one_time_keyboard=True, resize_keyboard=True
 )
-
 
 information_cashier_language_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
@@ -95,7 +93,6 @@ information_cashier_language_keyboard = ReplyKeyboardMarkup(keyboard=[
         KeyboardButton(text="Orqaga↩️")
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
-
 
 information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
@@ -124,15 +121,8 @@ finish_information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
 
-back_to_menu = ReplyKeyboardMarkup(keyboard=[
+back_to_menu_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
-        KeyboardButton(text="Menuga qaytish↩")
+        KeyboardButton(text="Menyuga qaytish↩")
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
-
-
-oddiy = ReplyKeyboardMarkup(keyboard=[
-    [
-        KeyboardButton(text="reqam", request_contact=True)
-    ]
-], one_time_keyboard=True, resize_keyboard=True, selective=True)

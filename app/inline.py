@@ -43,14 +43,14 @@ menu_uzb_inline = InlineKeyboardMarkup(inline_keyboard=[
 vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Kassir 💰", callback_data='cashier'),
-        InlineKeyboardButton(text="Farrosh 🧹", callback_data='farrosh')
+        InlineKeyboardButton(text="Farrosh 🧹", callback_data='cleaner')
     ],
     [
-        InlineKeyboardButton(text="Meva va sabzavotlar sotuvchisi 🤝", callback_data='meva_sotuvchi')
+        InlineKeyboardButton(text="Meva va sabzavotlar sotuvchisi 🤝", callback_data='fruit_seller')
     ],
     [
-        InlineKeyboardButton(text="Sotuvchi 🤝", callback_data='sotuvchi'),
-        InlineKeyboardButton(text="Yuk Tashuvchi 🚚", callback_data='yuk_tashuvchi')
+        InlineKeyboardButton(text="Sotuvchi 🤝", callback_data='seller'),
+        InlineKeyboardButton(text="Yuk Tashuvchi 🚚", callback_data='carrier')
     ],
     [
         InlineKeyboardButton(text="🔼Bosh Menyu", callback_data='menu')
