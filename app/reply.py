@@ -26,7 +26,7 @@ menu_keyboard = ReplyKeyboardMarkup(
     one_time_keyboard=True, resize_keyboard=True, selective=True, is_persistent=True
 )
 
-information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Boshlash")
     ],
@@ -38,7 +38,7 @@ information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True,
 )
 
-information_cashier_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[
     # [
     #     KeyboardButton(text="Telefon raqam📱", request_contact=True)
     # ],
@@ -50,7 +50,7 @@ information_cashier_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
-information_cashier_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Oilali"),
         KeyboardButton(text="Ajrashgan")
@@ -66,7 +66,7 @@ information_cashier_marry_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
-information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_student_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Ha talabaman"),
         KeyboardButton(text="Yo'q talaba emasman")
@@ -79,7 +79,7 @@ information_cashier_student_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
-information_cashier_language_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_language_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Boshlang'ich"),
         KeyboardButton(text="O'rtacha")
@@ -94,7 +94,7 @@ information_cashier_language_keyboard = ReplyKeyboardMarkup(keyboard=[
     ]
 ], one_time_keyboard=True, resize_keyboard=True)
 
-information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
+vacancy_price_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="💵 1-2 million"),
         KeyboardButton(text="💵 2-3 million")
@@ -111,7 +111,7 @@ information_cashier_price_keyboard = ReplyKeyboardMarkup(keyboard=[
     one_time_keyboard=True, resize_keyboard=True
 )
 
-finish_information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
+finish_information_vacancy_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Tugatish")
     ],

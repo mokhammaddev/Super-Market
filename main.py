@@ -37,15 +37,7 @@ dp.message.register(get_price_vacancy, Vacancy.price)
 dp.message.register(get_image_vacancy, Vacancy.image)
 dp.message.register(get_finish_vacancy, Vacancy.finish)
 dp.message.register(get_to_menu, Vacancy.menu)
-
-
-# dp.callback_query.register(get_vacancies, F.data.startswith('vacancy'))
-# dp.callback_query.register(get_cashier, F.data.startswith('cashier'))
-# dp.message.register(get_start_cashier)
-# dp.message.register(anonym_text_delete)
-
-
-##############################################################################
+dp.message.register(get_photo, F.photo)
 
 
 async def main():

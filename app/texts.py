@@ -13,16 +13,3 @@ vacancy_cashier_text = ("<b>Lavozimi vazifalari:</b>\n"
                       "• Agar tajribangiz bo'lmasa ham, biz sizni ishga olamiz va o'qitamiz;\n"
                       "• Issiq ovqat\n"
                       "• Trening va darslar.\n")
-
-cashier_start_boolean = []
-simple = []
-list_name = []
-list_age = []
-list_location = []
-list_phone = []
-list_marry = []
-list_is_student = []
-list_language = []
-list_work_day = []
-list_price = []
-list_photo = []
