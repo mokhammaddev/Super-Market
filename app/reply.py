@@ -28,11 +28,14 @@ menu_keyboard = ReplyKeyboardMarkup(
 
 information_cashier_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
+        KeyboardButton(text="Boshlash")
+    ],
+    [
         KeyboardButton(text="🔼Menyu"),
         KeyboardButton(text="Orqaga↩️")
     ]
 ],
-    one_time_keyboard=True, resize_keyboard=True
+    one_time_keyboard=True, resize_keyboard=True,
 )
 
 information_cashier_phone_number_keyboard = ReplyKeyboardMarkup(keyboard=[

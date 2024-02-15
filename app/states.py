@@ -10,4 +10,5 @@ class Vacancy(StatesGroup):
     is_student = State()
     language = State()
     price = State()
-    photo = State()
+    image = State()
+    finish = State()
