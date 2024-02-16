@@ -37,7 +37,6 @@ dp.message.register(get_price_vacancy, Vacancy.price)
 dp.message.register(get_image_vacancy, Vacancy.image)
 dp.message.register(get_finish_vacancy, Vacancy.finish)
 dp.message.register(get_to_menu, Vacancy.menu)
-dp.message.register(get_photo, F.photo)
 
 
 async def main():

@@ -2,6 +2,7 @@ from aiogram.fsm.state import StatesGroup, State
 
 
 class Vacancy(StatesGroup):
+    id = State()
     name = State()
     age = State()
     location = State()

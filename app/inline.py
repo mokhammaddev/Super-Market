@@ -56,3 +56,11 @@ vacancy_menu_inline = InlineKeyboardMarkup(inline_keyboard=[
         InlineKeyboardButton(text="🔼Bosh Menyu", callback_data='menu')
     ]
 ], one_time_keyboard=True)
+
+
+again_vacancy_inline = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        # InlineKeyboardButton(text="Ariza topshirish", callback_data='vacancy'),
+        InlineKeyboardButton(text="Orqaga qaytish", callback_data='menu')
+    ]
+], one_time_keyboard=True)

@@ -8,10 +8,7 @@ from app.texts import *
 from app.states import *
 
 
-async def get_photo(message: Message, bot: Bot):
-    photo_data = message.photo[-1]
-    await message.answer(f'{photo_data}')
-
+# id_user = None
 
 async def get_start(message: Message, bot: Bot):
     await set_commands(bot)
@@ -42,19 +39,33 @@ async def get_menu(call: CallbackQuery, bot: Bot, state: FSMContext):
 
 
 async def get_vacancies(call: CallbackQuery, bot: Bot):
-    await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
+    print(Vacancy, Vacancy.__init__)
+    print(Vacancy.name)
+    if Vacancy.id == call.message.chat.id:
+        await call.message.answer("<b>Siz ariza topshirgansiz, qaytatdan ariza topshirasizmi?</b>\n"
+                                  "Inlinelardan birini tanlang👇 ",
+                                  reply_markup=again_vacancy_inline)
+    else:
+        await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
     await call.message.delete()
+
+
+async def check_vacancy_register(call: CallbackQuery, bot: Bot):
+    if Vacancy.id:
+        if Vacancy.id == call.message.from_user.id:
+            await call.message.answer("Davom ettirish")
 
 
 async def get_vacancy(call: CallbackQuery, bot: Bot, state: FSMContext):
     await call.message.answer_photo("https://s-english.ru/images/lilovik-2/kassir5.jpg", vacancy_cashier_text,
-                                    reply_markup=vacancy_keyboard)
+                                    reply_markup=start_vacancy_keyboard)
     await call.message.delete()
 
 
 async def get_start_vacancy(message: Message, bot: Bot, state: FSMContext):
     await message.answer(
-        f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>)")
+        f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>)",
+        reply_markup=vacancy_keyboard)
     await state.set_state(Vacancy.name)
 
 
@@ -63,10 +74,15 @@ async def get_name_vacancy(message: Message, bot: Bot, state: FSMContext):
         await state.update_data(name=message.text)
         await state.set_state(Vacancy.age)
         await message.answer(f"Tug'ilgan kuningizni kiriting 📅 (masalan, <b>31.10.2002</b>):")
+    elif message.text == "Orqaga↩️":
+        await message.answer("Orqaga↩️", reply_markup=start_vacancy_keyboard)
+        await message.delete()
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer(
             "Noto'gri kiritildi, iltimos namunadagidek kiriting\n (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>):")
-        # await state.set_state(Vacancy.name)
 
 
 async def get_age_vacancy(message: Message, bot: Bot, state: FSMContext):
@@ -76,6 +92,11 @@ async def get_age_vacancy(message: Message, bot: Bot, state: FSMContext):
         await message.answer(
             "Yashash manzili 🏠 viloyat/shahar(tuman)/kocha/raqam-uy (masalan: <b>Sirdaryo/Xovos/17-uy</b> ):")
         await state.set_state(Vacancy.location)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.name)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Noto'gri kiritildi, iltimos namunadagidek kiriting\n 📅 (masalan: 31.10.2002)")
 
@@ -84,21 +105,34 @@ async def get_location_vacancy(message: Message, bot: Bot, state: FSMContext):
     if len(message.text.split('/')) == 3 or len(message.text.split()) == 3:
         await state.update_data(location=message.text)
         await state.set_state(Vacancy.phone_number)
-        await message.answer("Kontakt telefon raqamingizni kiriting 📱 misol: (<b>+998770001732</b> yoki <b>770001732</b>)",
-                             reply_markup=vacancy_phone_number_keyboard)
+        await message.answer(
+            "Kontakt telefon raqamingizni kiriting 📱 misol: (<b>+998770001732</b> yoki <b>770001732</b>)",
+            reply_markup=vacancy_phone_number_keyboard)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.age)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer(
             "Noto'gri kiritildi, iltimos namunadagidek kiriting\n (masalan: <b>Sirdaryo/Xovos/17-uy</b>)")
 
 
 async def get_phone_number_vacancy(message: Message, bot: Bot, state: FSMContext):
-    if (len(message.text) == 13 and message.text[0] == '+' and message.text[1:].isdigit()) or (len(message.text) == 9 and message.text.isdigit()):
+    if (len(message.text) == 13 and message.text[0] == '+' and message.text[1:].isdigit()) or (
+            len(message.text) == 9 and message.text.isdigit()):
         await state.update_data(phone_number=message.text)
         await message.answer("💍 Oilaviy ahvolingiz:", reply_markup=vacancy_marry_keyboard)
         await state.set_state(Vacancy.marry)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.location)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer(
-            "Noto'gri kiritildi, iltimos namunadagidek kiriting 📱 \nmisol: (<b>+998770001732</b> yoki <b>770001732</b>)")
+            "Noto'gri kiritildi, iltimos namunadagidek kiriting 📱 \nmisol: (<b>+998770001732</b> yoki <b>770001732</b>)",
+            reply_markup=vacancy_phone_number_keyboard)
 
 
 async def get_marry_vacancy(message: Message, bot: Bot, state: FSMContext):
@@ -106,6 +140,11 @@ async def get_marry_vacancy(message: Message, bot: Bot, state: FSMContext):
         await state.update_data(marry=message.text)
         await message.answer("Siz 🎓 talabamisiz?", reply_markup=vacancy_student_keyboard)
         await state.set_state(Vacancy.is_student)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.phone_number)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
                              reply_markup=vacancy_marry_keyboard)
@@ -117,6 +156,11 @@ async def get_is_student_vacancy(message: Message, bot: Bot, state: FSMContext):
         await message.answer("Rus tilini qanchalik darajada bilasiz? 🇷🇺",
                              reply_markup=vacancy_language_keyboard)
         await state.set_state(Vacancy.language)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.marry)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
                              reply_markup=vacancy_student_keyboard)
@@ -128,6 +172,11 @@ async def get_language_vacancy(message: Message, bot: Bot, state: FSMContext):
         await message.answer("💸 Kutilayotgan ish haqi miqdorini ko'rsating (<b>so'm</b>):",
                              reply_markup=vacancy_price_keyboard)
         await state.set_state(Vacancy.price)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.is_student)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
                              reply_markup=vacancy_language_keyboard)
@@ -138,6 +187,11 @@ async def get_price_vacancy(message: Message, bot: Bot, state: FSMContext):
         await state.update_data(price=message.text)
         await message.answer("Suratingizni yuboring 🤵 (telefoningizdan selfi olishingiz mumkin)")
         await state.set_state(Vacancy.image)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.language)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Noto'gri kiritildi, iltimos pastdagi bottomladan birini tanlash",
                              reply_markup=vacancy_price_keyboard)
@@ -148,16 +202,22 @@ async def get_image_vacancy(message: Message, bot: Bot, state: FSMContext):
         await state.update_data(image=message.photo)
         await message.answer("Tugatish", reply_markup=finish_information_vacancy_keyboard)
         await state.set_state(Vacancy.finish)
+    elif message.text == "Orqaga↩️":
+        await state.set_state(Vacancy.price)
+    elif message.text == "🔼Menyu":
+        await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
+        await message.delete()
     else:
         await message.answer("Iltimos rasmingizni yuboring")
 
 
 async def get_finish_vacancy(message: Message, bot: Bot, state: FSMContext):
     data = await state.get_data()
+    Vacancy.id = message.from_user.id
     finish_cashier_information_text = (
         f"<b>Vakansiya💼:</b>  ____  \n"
         f"<b>Username:</b>@{message.from_user.username}\n"
-        f"<b>User id:</b> {message.from_user.id}\n"
+        f"<b>User id:</b> {Vacancy.id}\n"
         f"<b>To'liq ismi:</b> {data.get('name')}\n"
         f"<b>Tug'ilgan sanasi:</b> {data.get('age')} yil\n"
         f"<b>Turar joy manzili:</b> {data.get('location')}\n"
@@ -166,11 +226,11 @@ async def get_finish_vacancy(message: Message, bot: Bot, state: FSMContext):
         f"<b>Talaba:</b> {data.get('is_student')} ✅\n"
         f"<b>Rus tili darajasi:</b> {data.get('language')}\n"
         f"<b>Kutilayotgan ish haqi darajasi:</b> {data.get('price')}\n"
-        f"<b>🤵Asosiy surat:</b> photo\n")
+        f"<b>🤵Asosiy surat:</b> {message.from_user.id} photo\n")
     await bot.send_message(2101536145, f"<b>Yangi ariza</b>\n {finish_cashier_information_text}")
     await message.answer(f"<b>Arizangiz qabul qilindi!</b>", reply_markup=back_to_menu_keyboard)
     await state.set_state(Vacancy.menu)
 
 
 async def get_to_menu(message: Message):
-    await message.answer("Menuuuuuuuuuuuuuuuuu", reply_markup=menu_uzb_inline)
+    await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
