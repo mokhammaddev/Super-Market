@@ -39,14 +39,12 @@ async def get_menu(call: CallbackQuery, bot: Bot, state: FSMContext):
 
 
 async def get_vacancies(call: CallbackQuery, bot: Bot):
-    print(Vacancy, Vacancy.__init__)
-    print(Vacancy.name)
-    if Vacancy.id == call.message.chat.id:
+    if Vacancy.id != call.message.chat.id:
+        await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
+    else:
         await call.message.answer("<b>Siz ariza topshirgansiz, qaytatdan ariza topshirasizmi?</b>\n"
                                   "Inlinelardan birini tanlang👇 ",
                                   reply_markup=again_vacancy_inline)
-    else:
-        await call.message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
     await call.message.delete()
 
 
