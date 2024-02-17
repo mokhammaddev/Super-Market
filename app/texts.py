@@ -1,4 +1,4 @@
-vacancy_cashier_text = ("<b>Lavozimi vazifalari:</b>\n"
+vacancy_job_text = ("<b>Lavozimi vazifalari:</b>\n"
                       "• Kassada to'lovlarni qabul qilish va mijozlar bilan hisob-kitoblarni amalga oshirish;\n"
                       "• Har bir kassadan o'tayotgan tovarlarni skanerlash.\n"
                       "• Kassani toza saqlash.\n"
