@@ -4,10 +4,10 @@ start_vacancy_keyboard = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Boshlash")
     ],
-    [
-        KeyboardButton(text="🔼Menyu"),
-        KeyboardButton(text="Orqaga↩️")
-    ]
+    # [
+    #     KeyboardButton(text="🔼Menyu"),
+    #     KeyboardButton(text="Orqaga↩️")
+    # ]
 ],
     one_time_keyboard=True, resize_keyboard=True, input_field_placeholder="Bottomlardan bitini tanlang"
 )

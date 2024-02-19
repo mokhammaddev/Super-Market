@@ -74,21 +74,28 @@ async def get_vacancy(call: CallbackQuery, bot: Bot, state: FSMContext):
         await call.message.answer_photo(
             "https://www.shutterstock.com/shutterstock/photos/1339855676/display_1500/stock-photo-portrait-of-a-cheese-seller-in-uniform-standing-with-cheese-head-in-the-supermarket-1339855676.jpg",
             vacancy_job_text, reply_markup=start_vacancy_keyboard)
+    await state.set_state(Vacancy.start)
     await call.message.delete()
 
 
 async def get_start_vacancy(message: Message, bot: Bot, state: FSMContext):
-    await message.answer(
-        f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>)",
-        reply_markup=vacancy_keyboard)
-    await state.set_state(Vacancy.name)
+    print(message.text)
+    if message.text == "Boshlash":
+        await message.answer(
+            f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>)",
+            reply_markup=vacancy_keyboard)
+        await state.set_state(Vacancy.name)
+    else:
+        await message.answer("Davom ettirmoqchi bo'lsangiz <b>Boshlash</b> bottomini bosing",
+                             reply_markup=start_vacancy_keyboard)
 
 
 async def get_name_vacancy(message: Message, bot: Bot, state: FSMContext):
     if len(message.text.split()) == 4 or len(message.text.split()) == 3:
         await state.update_data(name=message.text)
         await state.set_state(Vacancy.age)
-        await message.answer(f"Tug'ilgan kuningizni kiriting 📅 (masalan, <b>31.10.2002</b>):")
+        await message.answer(f"Tug'ilgan kuningizni kiriting 📅 (masalan, <b>31.10.2002</b>):",
+                             reply_markup=vacancy_keyboard)
     elif message.text == "Orqaga↩️":
         await message.answer("Orqaga↩️", reply_markup=start_vacancy_keyboard)
         await message.delete()
