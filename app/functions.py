@@ -74,12 +74,16 @@ async def get_vacancy(call: CallbackQuery, bot: Bot, state: FSMContext):
         await call.message.answer_photo(
             "https://www.shutterstock.com/shutterstock/photos/1339855676/display_1500/stock-photo-portrait-of-a-cheese-seller-in-uniform-standing-with-cheese-head-in-the-supermarket-1339855676.jpg",
             vacancy_job_text, reply_markup=start_vacancy_keyboard)
+    if call.data == "carrier":
+        await state.update_data(job="Yuk Tashuvchi 🚚")
+        await call.message.answer_photo(
+            "https://avatars.mds.yandex.net/i?id=88bdd6117ec58abd6e476ef3d49fdd6b14868be2-9147160-images-thumbs&n=13",
+            vacancy_job_text, reply_markup=start_vacancy_keyboard)
     await state.set_state(Vacancy.start)
     await call.message.delete()
 
 
 async def get_start_vacancy(message: Message, bot: Bot, state: FSMContext):
-    print(message.text)
     if message.text == "Boshlash":
         await message.answer(
             f"Pasportingiz bo'yicha familiyangizni ismingizni otasining ismini kiriting (masalan: <b>Falonchiyev Pistonchi Falonchiyevich</b>)",
@@ -97,7 +101,7 @@ async def get_name_vacancy(message: Message, bot: Bot, state: FSMContext):
         await message.answer(f"Tug'ilgan kuningizni kiriting 📅 (masalan, <b>31.10.2002</b>):",
                              reply_markup=vacancy_keyboard)
     elif message.text == "Orqaga↩️":
-        await message.answer("Orqaga↩️", reply_markup=start_vacancy_keyboard)
+        await message.answer("<b>Sizni qiziqtirgan vakansiyani tanlang 💼</b>", reply_markup=vacancy_menu_inline)
         await message.delete()
     elif message.text == "🔼Menyu":
         await message.answer("<b>Quyidagilardan birini tanlang</b>", reply_markup=menu_uzb_inline)
