@@ -17,10 +17,10 @@ class Vacancy(StatesGroup):
     finish = State()
     menu = State()
 
-#
-# class Job(StatesGroup):
-#     cashier = State()
-#     cleaner = State()
+
+class Job(StatesGroup):
+    cashier = State()
+    cleaner = State()
 #     fruit_seller = State()
 #     seller = State()
 #     carrier = State()
